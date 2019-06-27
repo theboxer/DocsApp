@@ -17,7 +17,8 @@ class CacheNavigation extends Command {
         $output->writeln('<info>Regenerating navigation cache...</info>');
 
         $versions = array_keys(VersionsService::getAvailableVersions());
-        $languages = ['en', 'ru', 'nl'];
+        $languages = ['en'];
+//        $languages = ['en', 'ru', 'nl'];
         foreach ($versions as $version) {
             foreach ($languages as $language) {
                 $output->writeln('- ' . $version. '/' . $language . '');

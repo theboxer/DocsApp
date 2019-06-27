@@ -28,10 +28,13 @@ class Init extends Command {
         $db = $container->get('db');
 
         $db->exec('CREATE TABLE IF NOT EXISTS Translations (
-  en VARCHAR(255) PRIMARY KEY,
-  ru VARCHAR(255),
-  nl VARCHAR(255)
+  en VARCHAR(255) PRIMARY KEY
 ) ');
+//        $db->exec('CREATE TABLE IF NOT EXISTS Translations (
+//  en VARCHAR(255) PRIMARY KEY,
+//  ru VARCHAR(255),
+//  nl VARCHAR(255)
+//) ');
 
 
 

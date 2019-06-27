@@ -50,7 +50,8 @@ class Search extends Command {
         $db->exec('DELETE FROM Search_Terms_Occurrences');
 
         $versions = array_keys(VersionsService::getAvailableVersions(false));
-        $languages = ['en', 'ru', 'nl'];
+        $languages = ['en'];
+//        $languages = ['en', 'ru', 'nl'];
 
         $count = 0;
         foreach ($versions as $version) {
@@ -163,7 +164,7 @@ class Search extends Command {
                 $map[$word] = $rowid;
                 continue;
             }
-            
+
             $insertStmt->bindValue(':term', $word);
             $insertStmt->bindValue(':phonetic_term', SearchService::fuzzyTerm($word, $language));
             $insertStmt->bindValue(':language', $language);
@@ -175,6 +176,6 @@ class Search extends Command {
             $map[$word] = $db->lastInsertId();
         }
         $db->commit();
-        return $map;        
+        return $map;
     }
 }

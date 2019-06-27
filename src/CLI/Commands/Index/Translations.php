@@ -53,7 +53,8 @@ class Translations extends Command {
             $mapEn[$item['uri']] = [];
         }
 
-        $languages = ['ru', 'nl'];
+        $languages = [];
+//        $languages = ['ru', 'nl'];
 
         foreach ($languages as $language) {
             $output->writeln('<info>- Processing ' . $version . '/' . $language . '...</info>');
@@ -82,12 +83,13 @@ class Translations extends Command {
         $fetchStmt = $db->prepare($fetch);
         $fetchStmt->bindParam(':source', $source);
 
-        $insert = 'INSERT INTO Translations (en, ru, nl) VALUES (:en, :ru, :nl)';
+        $insert = 'INSERT INTO Translations (en) VALUES (:en)';
+//        $insert = 'INSERT INTO Translations (en, ru, nl) VALUES (:en, :ru, :nl)';
         $insertStmt = $db->prepare($insert);
         foreach ($mapEn as $source => $translations) {
             $insertStmt->bindValue(':en', $source);
-            $insertStmt->bindValue(':ru', $translations['ru'] ?? '');
-            $insertStmt->bindValue(':nl', $translations['nl'] ?? '');
+//            $insertStmt->bindValue(':ru', $translations['ru'] ?? '');
+//            $insertStmt->bindValue(':nl', $translations['nl'] ?? '');
 
             $insertStmt->execute();
         }
